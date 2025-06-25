@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+dbt/target/
+dbt/dbt_modules/
+powerbi/*.tmp
+.env
+.DS_Store
