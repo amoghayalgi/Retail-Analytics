@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: raw
+    database: RETAIL_DB
+    schema: RAW
+    tables:
+      - name: STG_SALES
+        description: "Raw sales data from PySpark ingestion"
+      - name: STG_STORES
+        description: "Raw store data from PySpark ingestion"
+      - name: STG_FEATURES
+        description: "Raw features data from PySpark ingestion"
+
+  - name: staging
+    database: RETAIL_DB
+    schema: STAGING
+    tables:
+      - name: RETAIL_FEATURES
+        description: "Cleaned, feature-engineered retail data from PySpark"
+
+  - name: analytics
+    database: RETAIL_DB
+    schema: ANALYTICS
+    tables:
+      - name: PREDICTED_WEEKLY_SALES
+        description: "Predicted weekly sales from PySpark ML model"

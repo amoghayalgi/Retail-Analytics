@@ -1,0 +1,128 @@
+version: 2
+
+models:
+  - name: fct_sales_analytics
+    description: "Main analytics fact table for sales, predictions, and features"
+    columns:
+      - name: store
+        description: "Store ID"
+        tests: [not_null]
+      - name: dept
+        description: "Department ID"
+        tests: [not_null]
+      - name: date
+        description: "Date"
+        tests: [not_null]
+      - name: actual_weekly_sales
+        description: "Actual weekly sales"
+      - name: predicted_weekly_sales
+        description: "Predicted weekly sales"
+      - name: isholiday
+        description: "Holiday flag (raw)"
+      - name: temperature
+        description: "Temperature"
+      - name: fuel_price
+        description: "Fuel price"
+      - name: cpi
+        description: "Consumer Price Index"
+      - name: unemployment
+        description: "Unemployment rate"
+      - name: store_type
+        description: "Type of store"
+      - name: store_size
+        description: "Store size (sqft)"
+      - name: actual_sales_per_sqft
+        description: "Actual sales per square foot"
+      - name: predicted_sales_per_sqft
+        description: "Predicted sales per square foot"
+      - name: prediction_error_percentage
+        description: "Prediction error (%)"
+      - name: prediction_error_absolute
+        description: "Prediction error (absolute)"
+      - name: year
+        description: "Year"
+      - name: month
+        description: "Month"
+      - name: day_of_week
+        description: "Day of week"
+      - name: is_holiday_flag
+        description: "Holiday flag (numeric)"
+
+  - name: dim_store
+    description: "Store dimension"
+    columns:
+      - name: store_id
+        description: "Store ID"
+        tests: [not_null, unique]
+      - name: store_type
+        description: "Type of store"
+      - name: store_size
+        description: "Store size (sqft)"
+
+  - name: dim_date
+    description: "Date dimension"
+    columns:
+      - name: date
+        description: "Date"
+        tests: [not_null, unique]
+      - name: day_of_week
+        description: "Day of week"
+      - name: week_number
+        description: "Week number"
+      - name: month
+        description: "Month"
+      - name: quarter
+        description: "Quarter"
+      - name: year
+        description: "Year"
+      - name: is_weekend
+        description: "Weekend flag"
+
+  - name: kpi_total_sales_by_store
+    description: "Total sales by store"
+    columns:
+      - name: store
+        description: "Store ID"
+        tests: [not_null]
+      - name: total_sales
+        description: "Total sales"
+
+  - name: kpi_monthly_sales_trend
+    description: "Monthly sales trend"
+    columns:
+      - name: year
+        description: "Year"
+      - name: month
+        description: "Month"
+      - name: total_sales
+        description: "Total sales"
+
+  - name: kpi_prediction_accuracy
+    description: "Prediction accuracy metrics"
+    columns:
+      - name: store
+        description: "Store ID"
+        tests: [not_null]
+      - name: dept
+        description: "Department ID"
+        tests: [not_null]
+      - name: year
+        description: "Year"
+      - name: month
+        description: "Month"
+      - name: total_predictions
+        description: "Total number of predictions"
+      - name: avg_absolute_error_percentage
+        description: "Average absolute error (%)"
+      - name: avg_error_percentage
+        description: "Average error (%)"
+      - name: stddev_error_percentage
+        description: "Stddev of error (%)"
+      - name: excellent_predictions
+        description: "Predictions with ≤5% error"
+      - name: good_predictions
+        description: "Predictions with ≤10% error"
+      - name: fair_predictions
+        description: "Predictions with ≤20% error"
+      - name: poor_predictions
+        description: "Predictions with >20% error"
