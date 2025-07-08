@@ -62,4 +62,4 @@ Project Workflow: Step-by-Step
 
 10. GitHub Version Control
 
-   -The entire project directory is version-controlled and uploaded to GitHub for collaboration and reproducibility.
+     -The entire project directory is version-controlled and uploaded to GitHub for collaboration and reproducibility.
